@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="autor" content="@iAntonAMC">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pantalla de registro de Productos en Inventario">
+    <title>INVENTORY | FRIKATS© </title>
+    <link rel="icon" href="/FRONTEND/static/assets/images/LOGO2023.jpg">
+    <link rel="stylesheet" href="/FRONTEND/static/css/insert-product.css">
+
+    <!-- Site Functionallity -->
+    <script src="/FRONTEND/static/js/utils.js"></script>
+    <script src="/FRONTEND/static/js/products-model.js"></script>
+</head>
+<body>
+    <h1>Registro de Productos</h1>
+    <label for="sku">SKU: </label>
+    <input type="text" name="sku" id="sku">
+    <label for="name">Nombre: </label>
+    <input type="text" name="name" id="name">
+    <label for="description">Descripción: </label>
+    <textarea name="description" id="description" cols="30" rows="2" placeholder="Descripción del Producto"></textarea>
+    <label for="price">Precio: </label>
+    <input type="number" name="price" id="price">
+    <label for="stock">Stock: </label>
+    <input type="number" name="stock" id="stock">
+    <label for="category">Categoría: </label>
+    <select name="category" id="category">
+        <option value="1">Categoría 1</option>
+        <option value="2">Categoría 2</option>
+        <option value="3">Categoría 3</option>
+        <option value="4">Categoría 4</option>
+        <option value="5">Categoría 5</option>
+    </select>
+    <label for="image">Imagen: </label>
+    <input type="file" name="image" id="image">
+    <label for="submit">Registrar: </label>
+    <input type="submit" value="Registrar" id="submit" onclick="registerProduct()">
+</body>
+</html>

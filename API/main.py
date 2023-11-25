@@ -8,6 +8,7 @@ from fastapi import status
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import API.models.customers as customers
+import API.models.products as products
 
 
 # Pydantic Base Models:
@@ -25,6 +26,15 @@ class Category(BaseModel):
 
 class Product(BaseModel):
     id_product: int
+    product_sku: str
+    product_name: str
+    product_description: str
+    product_price: float
+    product_image: str
+    product_stock: int
+    id_category: int
+
+class ProductSinID(BaseModel):
     product_sku: str
     product_name: str
     product_description: str
@@ -99,3 +109,30 @@ async def root():
     response = {"message":"API's connection confirmed"}
     return response
 
+# PRODUCTS
+# Create a product
+@app.post(
+    "/frikats/inventory/create",
+    response_model = Message,
+    status_code = status.HTTP_201_CREATED,
+    summary = "Create a product",
+    description = """
+    Register a product in the database
+    parameters: JSON product
+    response: JSON message
+    errors:
+        400 - Bad Request
+        404 - Not Found
+        409 - Conflict
+    """
+)
+async def createProduct(product: ProductSinID):
+    try:
+        response = products.create(product)
+        return response
+    except Exception as error:
+        print(f"ERROR en createProduct{error.args}")
+        return JSONResponse(
+            status_code = status.HTTP_400_BAD_REQUEST,
+            content = {"message":f"Error: {error}"}
+        )
