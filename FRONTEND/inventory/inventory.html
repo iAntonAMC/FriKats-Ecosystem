@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta name="autor" content="@iAntonAMC">
     <meta charset="UTF-8">
@@ -12,21 +12,25 @@
     <script src="/FRONTEND/static/js/products-model.js"></script>
 </head>
 <body onload="getAllPoducts()">
-    <table>
-        <thead>
-            <tr>
-                <th>SKU</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Categoría</th>
-                <th>Imagen</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="products-table">
-        </tbody>
-    </table>
+    <nav>
+        <a href="insert-product.html">Registrar Nuevo Producto</a>
+    </nav>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>SKU</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Categoría</th>
+                </tr>
+            </thead>
+            <tbody id="products-table">
+            </tbody>
+        </table>
+    </main>
 </body>
 </html>

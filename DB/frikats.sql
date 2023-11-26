@@ -46,4 +46,4 @@ CREATE TABLE sale_details (
 INSERT INTO customers (customer_name) VALUES ('Guest 1');
 INSERT INTO categories (category_name, common_animes) VALUES
     ('Shonnen', 'Naruto, One Piece, Dragon Ball');
-INSERT INTO products (product_sku, product_name, product_description, product_price, product_image, product_stock, id_category) VALUES ('B01', 'Botón/Pin', 'Fotobotón Metálico', 15, NULL, 100, 1);
+INSERT INTO products (product_sku, product_name, product_description, product_price, product_image, product_stock, id_category) VALUES ('B01', 'Botón/Pin', 'Fotobotón Metálico', 15, 'ruta/imagen.jpg', 100, 1);

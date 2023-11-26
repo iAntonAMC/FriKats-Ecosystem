@@ -4,30 +4,30 @@
     <meta name="autor" content="@iAntonAMC">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pantalla de registro de Productos en Inventario">
+    <meta name="description" content="Inventario de productos FriKats registrados">
     <title>INVENTORY | FRIKATS© </title>
     <link rel="icon" href="/FRONTEND/static/assets/images/LOGO2023.jpg">
-    <link rel="stylesheet" href="/FRONTEND/static/css/insert-product.css">
-    <!-- Site Functionallity -->
+    <link rel="stylesheet" href="/FRONTEND/static/css/inventory.css">
     <script src="/FRONTEND/static/js/utils.js"></script>
     <script src="/FRONTEND/static/js/products-model.js"></script>
 </head>
-<body>
+<body onload="getProductByID()">
     <nav>
-        <a href="inventory.html">Inventario</a>
+        <a href="inventory.html">Ver Inventario</a>
     </nav>
     <main>
-        <h1>Registro de Productos</h1>
+        <h1 id="product_name">Artículo</h1>
+        <img id="product_image" src="" alt="Imagen del Artículo">
         <label for="sku">SKU: </label>
-        <input type="text" name="sku" id="sku">
+        <input type="text" name="sku" id="sku" value="">
         <label for="name">Nombre: </label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" value="">
         <label for="description">Descripción: </label>
-        <textarea name="description" id="description" cols="30" rows="2" placeholder="Descripción del Producto"></textarea>
+        <textarea name="description" id="description" cols="30" rows="2" placeholder=""></textarea>
         <label for="price">Precio: </label>
-        <input type="number" name="price" id="price">
+        <input type="number" name="price" id="price" value="">
         <label for="stock">Stock: </label>
-        <input type="number" name="stock" id="stock">
+        <input type="number" name="stock" id="stock" value="">
         <label for="category">Categoría: </label>
         <select name="category" id="category">
             <option value="1">Categoría 1</option>
@@ -36,10 +36,6 @@
             <option value="4">Categoría 4</option>
             <option value="5">Categoría 5</option>
         </select>
-        <label for="image">Imagen: </label>
-        <input type="file" name="image" id="image">
-        <label for="submit">Registrar: </label>
-        <input type="submit" value="Registrar" id="submit" onclick="registerProduct()">
     </main>
 </body>
 </html>

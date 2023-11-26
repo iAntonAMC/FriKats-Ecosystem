@@ -1,5 +1,6 @@
 import sqlite3
 from fastapi import HTTPException
+from fastapi import status
 from fastapi.responses import JSONResponse
 
 
@@ -50,6 +51,37 @@ def getAll():
         raise HTTPException(
             status_code = status.HTTP_400_BAD_REQUEST,
             detail = f"Model.getAll method dropped an error: {error}"
+        )
+    finally:
+        cursor.close()
+        cnxn.close()
+
+# GET ONE
+def getOne(id_product):
+    try:
+        with sqlite3.connect("DB/frikats.db") as cnxn:
+            cursor = cnxn.cursor()
+            cursor.execute("SELECT * FROM products WHERE id_product = ?;", (id_product))
+            results = cursor.fetchone()
+            if results == None:
+                return JSONResponse(status_code = 404, content = {"message":"Can´t find 'id_product' in DB"})
+            else:
+                product = {
+                        "id_product":results[0],
+                        "product_sku":results[1],
+                        "product_name":results[2],
+                        "product_description":results[3],
+                        "product_price":results[4],
+                        "product_image":results[5],
+                        "product_stock":results[6],
+                        "id_category":results[7]
+                }
+            return product
+    except Exception as error:
+        print(f"Error in products.getOne: {error.args}")
+        raise HTTPException(
+            status_code = status.HTTP_400_BAD_REQUEST,
+            detail = f"Model.getOne method dropped an error: {error}"
         )
     finally:
         cursor.close()
