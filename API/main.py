@@ -136,3 +136,29 @@ async def createProduct(product: ProductSinID):
             status_code = status.HTTP_400_BAD_REQUEST,
             content = {"message":f"Error: {error}"}
         )
+
+# Get all products
+@app.get(
+    "/frikats/inventory/all",
+    response_model = List[Product],
+    status_code = status.HTTP_200_OK,
+    summary = "Get all products",
+    description = """
+    Get all the products registered in the database
+    parameters: None
+    response: JSON list of products
+    errors:
+        400 - Bad Request
+        404 - Not Found
+    """
+)
+async def getAllProducts():
+    try:
+        response = products.getAll()
+        return response
+    except Exception as error:
+        print(f"ERROR en getAllProducts{error.args}")
+        return JSONResponse(
+            status_code = status.HTTP_400_BAD_REQUEST,
+            content = {"message":f"Error: {error}"}
+        )
