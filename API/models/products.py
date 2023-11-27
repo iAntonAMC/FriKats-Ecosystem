@@ -86,3 +86,26 @@ def getOne(id_product):
     finally:
         cursor.close()
         cnxn.close()
+
+# UPDATE ONE
+def update(id_product, product):
+    try:
+        with sqlite3.connect("DB/frikats.db") as cnxn:
+            cursor = cnxn.cursor()
+            cursor.execute("SELECT * FROM products WHERE id_product = ?;", (id_product))
+            results = cursor.fetchone()
+            if results == None:
+                return JSONResponse(status_code = 404, content = {"message":"Can´t find 'id_product' in DB"})
+            else:
+                cursor.execute("UPDATE products SET product_sku = ?, product_name = ?, product_description = ?, product_price = ?, product_image = ?, product_stock = ?, id_category = ? WHERE id_product = ?;", (product.product_sku, product.product_name, product.product_description, product.product_price, product.product_image, product.product_stock, product.id_category, id_product))
+                cnxn.commit()
+                return JSONResponse(status_code = 200, content = {"message":"Product updated successfully"})
+    except Exception as error:
+        print(f"Error in products.update: {error.args}")
+        raise HTTPException(
+            status_code = status.HTTP_400_BAD_REQUEST,
+            detail = f"Model.update method dropped an error: {error}"
+        )
+    finally:
+        cursor.close()
+        cnxn.close()

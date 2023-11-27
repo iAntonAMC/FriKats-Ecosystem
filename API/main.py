@@ -188,3 +188,30 @@ async def getProduct(id_product):
             status_code = status.HTTP_400_BAD_REQUEST,
             content = {"message":f"Error: {error}"}
         )
+
+# Update a product
+@app.post(
+    "/frikats/inventory/update/{id_product}",
+    response_model = Message,
+    status_code = status.HTTP_202_ACCEPTED,
+    summary = "Update a product",
+    description = """
+    Update a product in the database
+    parameters: JSON product
+    response: JSON message
+    errors:
+        400 - Bad Request
+        404 - Not Found
+        409 - Conflict
+    """
+)
+async def updateProduct(id_product, product: ProductSinID):
+    try:
+        response = products.update(id_product, product)
+        return response
+    except Exception as error:
+        print(f"ERROR en updateProduct{error.args}")
+        return JSONResponse(
+            status_code = status.HTTP_400_BAD_REQUEST,
+            content = {"message":f"Error: {error}"}
+        )

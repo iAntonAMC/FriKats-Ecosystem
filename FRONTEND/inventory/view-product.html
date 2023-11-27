@@ -19,23 +19,35 @@
         <h1 id="product_name">Artículo</h1>
         <img id="product_image" src="" alt="Imagen del Artículo">
         <label for="sku">SKU: </label>
-        <input type="text" name="sku" id="sku" value="">
+        <input type="text" name="sku" id="sku" value="" readonly>
         <label for="name">Nombre: </label>
-        <input type="text" name="name" id="name" value="">
+        <input type="text" name="name" id="name" value="" readonly>
         <label for="description">Descripción: </label>
-        <textarea name="description" id="description" cols="30" rows="2" placeholder=""></textarea>
+        <textarea name="description" id="description" cols="30" rows="2" placeholder="" readonly></textarea>
         <label for="price">Precio: </label>
-        <input type="number" name="price" id="price" value="">
+        <input type="number" name="price" id="price" value="" readonly>
         <label for="stock">Stock: </label>
-        <input type="number" name="stock" id="stock" value="">
+        <input type="number" name="stock" id="stock" value="" readonly>
         <label for="category">Categoría: </label>
-        <select name="category" id="category">
+        <select name="category" id="category" disabled>
             <option value="1">Categoría 1</option>
             <option value="2">Categoría 2</option>
             <option value="3">Categoría 3</option>
             <option value="4">Categoría 4</option>
             <option value="5">Categoría 5</option>
         </select>
+        <button onclick="activateFields()">Editar Artículo</button>
+        <button id="product_id" value="" onclick="updateProduct()">Actualizar Artículo</button>
     </main>
 </body>
+<script>
+    function activateFields(){
+        document.getElementById("sku").readOnly = false;
+        document.getElementById("name").readOnly = false;
+        document.getElementById("description").readOnly = false;
+        document.getElementById("price").readOnly = false;
+        document.getElementById("stock").readOnly = false;
+        document.getElementById("category").disabled = false;
+    }
+</script>
 </html>

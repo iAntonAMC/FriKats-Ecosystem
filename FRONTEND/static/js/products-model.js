@@ -26,7 +26,7 @@ function registerProduct() {
     }
 }
 
-function getAllPoducts () {
+function getAllProducts () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", API_URL + InventoryPATH + "/all", true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -73,6 +73,23 @@ function getProductByID(){
             document.getElementById("price").value = product.product_price;
             document.getElementById("stock").value = product.product_stock;
             document.getElementById("category").value = product.id_category;
+            document.getElementById("product_id").value = product.id_product;
+        }
+    }
+}
+
+function updateProduct() {
+    var id_product = document.getElementById("product_id").value;
+    var product = getProductValues();
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", API_URL + InventoryPATH + "/update/" + id_product, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Allow-Control-Allow-Origin", "*");
+    xhr.send(JSON.stringify(product));
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            alert("Producto actualizado con éxito");
+            window.location.href = "http://localhost:666/FRONTEND/inventory/view-product.html?" + id_product;
         }
     }
 }
