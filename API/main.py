@@ -215,3 +215,32 @@ async def updateProduct(id_product, product: ProductSinID):
             status_code = status.HTTP_400_BAD_REQUEST,
             content = {"message":f"Error: {error}"}
         )
+
+# Delete a product
+
+
+# Search a product by name
+@app.get(
+    "/frikats/inventory/all/{product_name}",
+    response_model = List[Product],
+    status_code = status.HTTP_200_OK,
+    summary = "Search a product by name",
+    description = """
+    Search a product by name
+    parameters: STR product_name
+    response: JSON list of products
+    errors:
+        400 - Bad Request
+        404 - Not Found
+    """
+)
+async def searchProduct(product_name):
+    try:
+        response = products.searchName(product_name)
+        return response
+    except Exception as error:
+        print(f"ERROR en searchProduct{error.args}")
+        return JSONResponse(
+            status_code = status.HTTP_400_BAD_REQUEST,
+            content = {"message":f"Error: {error}"}
+        )

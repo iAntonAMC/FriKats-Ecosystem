@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="autor" content="@iAntonAMC">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Checkout de ventas FriKats">
+    <title>CHECKOUT | FRIKATS© </title>
+    <link rel="icon" href="/FRONTEND/static/assets/images/LOGO2023.jpg">
+    <link rel="stylesheet" href="/FRONTEND/static/css/checkout.css">
+    <script src="/FRONTEND/static/js/utils.js"></script>
+    <script src="/FRONTEND/static/js/products-model.js"></script>
+</head>
+<body>
+    <nav>
+        <input type="text" id="inputQuery" placeholder="Buscar productos">
+        <div id="results"></div>
+    </nav>
+    <main>
+        <div>
+            <h1>Ticket</h1>
+            <table >
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>(xPrecio)</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="ticket-body">
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script src="/FRONTEND/static/js/checkout.js"></script>
+    <footer>
+
+    </footer>
+</body>
+</html>

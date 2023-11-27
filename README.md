@@ -11,6 +11,9 @@ FriKats Repository, for bussiness logic implementation.
 
 ### 2. Administración de Ventas (Punto de Venta)
 - 2.1 Agregsr / Añadir un Producto al carrito de compras (Cantidad, Precio U, Subtotal)
+    - 2.1.1 Para agregar se debe poder buscar el artículo por nombre
+    - 2.1.2 Arriba de la sección "Ticket" deben desplegarse los resultados de la búsqueda
+    - 2.1.3 Arriba de la sección "Ticket" deben mostrarse opciones comunes de venta
 - 2.2 Modificar la cantidad de Producto, ya estando en el carrito
 - 2.3 Borrar un Producto del carrito
 - 2.4 Vaciar carrito
