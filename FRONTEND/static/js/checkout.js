@@ -2,7 +2,7 @@ const inputQuery = document.getElementById('inputQuery');
 const resultsDIV = document.getElementById('results');
 
 inputQuery.addEventListener('input', function() {
-    if(inputQuery.value.trim().length < 1) {
+    if(inputQuery.value.trim().length < 2) {
         resultsDIV.innerHTML = '';
         return;
     }
@@ -87,4 +87,15 @@ function addToCart(product) {
     }
 }
 
+function removeFromCart(button) {
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
 
+function emptyCart() {
+    var table = document.getElementById("ticket-body");
+    var rows = table.getElementsByTagName("tr");
+    while (rows.length != 0) {
+        rows[0].parentNode.removeChild(rows[0]);
+    }
+}
