@@ -48,6 +48,43 @@ function showResults(products) {
     });
 }
 
-function addToCart(product) {
-    console.log(product)
+function evaluateCart(product) {
+    var table = document.getElementById("ticket-body");
+    var rows = table.getElementsByTagName("tr");
+    var productAlreadyInCart = false;
+    if (rows.length != 0) {
+        for (var i = 0; i < rows.length; i++) {
+            if (rows[i].cells[1].innerHTML === product.product_name) {
+                productAlreadyInCart = true;
+                break
+            }
+        }
+    }
+    return productAlreadyInCart;
 }
+
+function addToCart(product) {
+    if (evaluateCart(product)) {
+        var quantityInput = document.getElementById("quantity-of-"+ product.id_product);
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+        var total = product.product_price * quantityInput.value;
+        var row = quantityInput.parentNode.parentNode;
+        row.cells[4].innerHTML = total;
+    }
+    else {
+        var table = document.getElementById("ticket-body");
+        var row = table.insertRow();
+        row.insertCell().innerHTML = product.product_image;
+        row.insertCell().innerHTML = product.product_name;
+        row.insertCell().innerHTML = '<input type="number" id="quantity-of-'+product.id_product+'" name="quantity-of-'+product.id_product+'" min="1" max="100" value="1">';
+        document.getElementById("quantity-of-"+product.id_product).addEventListener('change', function() {
+            var total = product.product_price * document.getElementById("quantity-of-"+product.id_product).value;
+            row.cells[4].innerHTML = total;
+        });
+        row.insertCell().innerHTML = product.product_price;
+        row.insertCell().innerHTML = product.product_price * document.getElementById("quantity-of-"+product.id_product).value;
+        row.insertCell().innerHTML = '<button class="btn btn-danger" onclick="removeFromCart(this)">Eliminar</button>';
+    }
+}
+
+
